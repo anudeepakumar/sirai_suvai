@@ -1,0 +1,34 @@
+{
+
+    
+
+    
+
+    
+
+    "specialization": {
+    },
+    "databaseConfig": {
+      "host": "localhost",
+      "database": "sirai_suvai",
+      "password":"password",
+      "user":"root"
+    },
+    "middleware": {
+
+        
+
+        "static": {
+            "module": {
+                "arguments": [ "path:./.build" ]
+            }
+        },
+
+        "router": {
+            "module": {
+                "arguments": [{ "directory": "path:./controllers" }]
+            }
+        }
+
+    }
+}
