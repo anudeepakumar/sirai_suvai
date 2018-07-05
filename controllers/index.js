@@ -24,6 +24,16 @@ module.exports = function (router) {
         });
     });
 
+    router.get('/auth/category', function (req, res) {
+        db.query("SELECT * FROM category", (err, Res) => {
+            if(err) {
+                res.send(err);
+            } else {
+                res.send(Res);
+            }
+        });
+    });
+
     router.get('/product', function (req, res) {
         db.query("SELECT * FROM product", (err, Res) => {
             if(err) {
