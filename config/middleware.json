@@ -1,0 +1,13 @@
+{
+
+    "authMiddleware": {
+        "enabled": true,
+        "priority": 30,
+        "route": "/auth",
+        "module": {
+            "name": "./lib/middleware",
+            "method": "authValidator"
+        }
+    }
+    
+}

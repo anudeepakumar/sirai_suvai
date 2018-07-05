@@ -2,15 +2,8 @@
 
 var express = require('express');
 var kraken = require('kraken-js');
-// var db = require('./lib/database');
-// var mysql = require('mysql');
-
-// var mysqlConn = mysql.createConnection({
-//     "host": "localhost",
-//     "database": "sirai_suvai",
-//     "password":"password",
-//     "user":"root"
-//   });
+var meddleware = require('meddleware');
+var config = require('shush')('./config/middleware');
 
 var options, app;
 
@@ -30,6 +23,8 @@ options = {
 
 app = module.exports = express();
 app.use(kraken(options));
+app.use(meddleware(config));
+
 app.on('start', function () {
     console.log('Application ready to serve requests.');
     console.log('Environment: %s', app.kraken.get('env:env'));
@@ -37,14 +32,3 @@ app.on('start', function () {
 app.listen(1111, function (err) {
     console.log('[%s] Listening on http://localhost:%d', app.settings.env, 1111);
 });
-
-// app.get('/', function(req, res) {
-//     // res.send("Hello");
-//     console.log(mysqlConn);
-//     mysqlConn.query("SELECT 1", function(err, result) {
-//         res.send({
-//             error: err,
-//             result: result
-//         });
-//     })
-// });
