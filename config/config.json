@@ -1,13 +1,4 @@
 {
-
-    
-
-    
-
-    
-
-    "specialization": {
-    },
     "databaseConfig": {
       "host": "localhost",
       "database": "sirai_suvai",
@@ -16,17 +7,38 @@
     },
     "middleware": {
 
-        
-
         "static": {
+            "enabled": true,
+            "priority": 11,
             "module": {
-                "arguments": [ "path:./.build" ]
+                "arguments": [ "path:./public" ]
+            }
+        },
+        
+        "authMiddleware": {
+            "enabled": true,
+            "priority": 9,
+            "route": "/auth",
+            "module": {
+                "name": "path:./lib/authValidator",
+                "method": "authValidator"
             }
         },
 
         "router": {
+            "enabled": true,
+            "priority": 10,
             "module": {
                 "arguments": [{ "directory": "path:./controllers" }]
+            }
+        },
+
+        "fileNotFound": {
+            "enabled": true,
+            "priority": 12,
+            "module": {
+                "name": "path:./lib/clientRoute",
+                "method": "clientRoute"
             }
         }
 
