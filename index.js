@@ -2,8 +2,6 @@
 
 var express = require('express');
 var kraken = require('kraken-js');
-var meddleware = require('meddleware');
-var config = require('shush')('./config/middleware');
 
 var options, app;
 
@@ -23,7 +21,7 @@ options = {
 
 app = module.exports = express();
 app.use(kraken(options));
-app.use(meddleware(config));
+// app.use(meddleware(config));
 
 app.on('start', function () {
     console.log('Application ready to serve requests.');
