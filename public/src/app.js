@@ -2,21 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
+import {Home} from "./pages/home";
+import {Newproduct} from "./pages/addProduct";
+
 const App = () => (
 	<Router>
 		<Switch>
 			<Route exact path="/" component={Home} />
-			<Route path="/about/:test" component={About} />
-			<Route path="/topics" component={Topics} />
+			<Route path="/products/add" component={Newproduct} />
+			<Route path="/products/edit/:productId" component={About} />
+			<Route path="/products" component={Topics} />
 			<Route component={ErrorPage} />
 		</Switch>
 	</Router>
-);
-
-const Home = () => (
-	<div>
-		<h2>Home</h2>
-	</div>
 );
 
 class About extends React.Component {
