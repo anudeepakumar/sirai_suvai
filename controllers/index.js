@@ -54,4 +54,10 @@ module.exports = function (router) {
         });
     });
 
+    router.post('/products/add', function (req, res) {
+        console.log("Here", req.body, req.files);
+        let bodyData = req.body;
+        res.send(bodyData);
+    })
+
 };

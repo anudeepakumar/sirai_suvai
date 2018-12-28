@@ -1,6 +1,7 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import axios from 'axios';
 // import { Header } from "../components/header";
 
 export class Newproduct extends React.Component {
@@ -16,49 +17,62 @@ export class Newproduct extends React.Component {
         };
 
         // bind this to other functions
-        this.setProductName = this.setProductName.bind(this);
+        this.setStateValue = this.setStateValue.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     };
-    setProductName(event) {
-        console.log(event.target);
-        this.setState({productName:event.target.value});
+
+    setStateValue(event) {
+        let setObj = {};
+        setObj[event.target.name] = event.target.value;
+        console.log(event.target.value, event.target.name, setObj);
+        this.setState(setObj);
     };
+
     handleSubmit(event) {
         console.log(event);
         event.preventDefault();
+        axios.post('/products/add', this.state).then((result) => {
+            console.log("result",result);
+        });
+        
     };
+
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <FormGroup>
-                    <ControlLabel>Product Name</ControlLabel>
-                    <FormControl type="text" name="productName" onInput={this.setProductName.bind(this)} value={this.state.productName} placeholder="Product Name"></FormControl>
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Product Description</ControlLabel>
-                    <FormControl type="text" name="productDescription" value={this.state.productDescription} placeholder="Product Description"></FormControl>
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Product Image</ControlLabel>
-                    <FormControl type="file" name="productImage" value={this.state.productImage} placeholder="Product Image"></FormControl>
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Unit Weight</ControlLabel>
-                    <FormControl type="number" name="unitWeight" value={this.state.unitWeight} placeholder="Unit Weight"></FormControl>
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Unit Price</ControlLabel>
-                    <FormControl type="number" name="unitPrice" value={this.state.unitPrice} placeholder="Unit Price"></FormControl>
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Effective Date</ControlLabel>
-                    <FormControl type="date" name="effectiveDate" value={this.state.effectiveDate} placeholder="Effective Date"></FormControl>
-                </FormGroup>
-                <FormGroup>
-                    <ControlLabel>Effective Date</ControlLabel>
-                    <FormControl type="submit" name="formSubmit" placeholder="Effective Date"></FormControl>
-                </FormGroup>
-            </form>
+            <div className="container">
+                <div className="col-xl-3 col-md-4 col-sm-6">
+                    <form onSubmit={this.handleSubmit}>
+                        <FormGroup>
+                            <ControlLabel>Product Name</ControlLabel>
+                            <FormControl type="text" name="productName" onInput={this.setStateValue} value={this.state.productName} placeholder="Product Name"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Product Description</ControlLabel>
+                            <FormControl type="text" name="productDescription" onInput={this.setStateValue} value={this.state.productDescription} placeholder="Product Description"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Product Image</ControlLabel>
+                            <FormControl type="file" name="productImage" onChange={this.setStateValue} value={this.state.productImage} placeholder="Product Image"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Unit Weight</ControlLabel>
+                            <FormControl type="number" name="unitWeight" onInput={this.setStateValue} value={this.state.unitWeight} placeholder="Unit Weight"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Unit Price</ControlLabel>
+                            <FormControl type="number" name="unitPrice" onInput={this.setStateValue} value={this.state.unitPrice} placeholder="Unit Price"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Effective Date</ControlLabel>
+                            <FormControl type="date" name="effectiveDate" onInput={this.setStateValue} value={this.state.effectiveDate} placeholder="Effective Date"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Effective Date</ControlLabel>
+                            <FormControl type="submit" name="formSubmit" placeholder="Effective Date" value="Sumbit"></FormControl>
+                        </FormGroup>
+                    </form>
+                </div>
+            </div>
         );
     };
 }

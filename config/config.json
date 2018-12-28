@@ -7,6 +7,35 @@
     },
     "middleware": {
 
+        "json": {
+            "enabled": true,
+            "priority": 7,
+            "module": {
+                "name": "body-parser",
+                "method": "json"
+            }
+        },
+
+        "urlencoded": {
+            "enabled": true,
+            "priority": 8,
+            "module": {
+                "name": "body-parser",
+                "method": "urlencoded",
+                "arguments": [
+                    {"extended": true}
+                ]
+            }
+        },
+
+        "multipart": {
+            "enabled": true,
+            "priority": 6,
+            "module": {
+                "name": "kraken-js/middleware/multipart"
+            }
+        },
+
         "static": {
             "enabled": true,
             "priority": 11,

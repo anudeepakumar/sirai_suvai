@@ -8,18 +8,21 @@
         "test": "grunt test",
         "build": "grunt build",
         "all": "npm run build && npm run test",
-        "dist": "webpack"
+        "dist": "webpack --watch"
     },
     "dependencies": {
+        "axios": "^0.18.0",
         "construx": "^1.0.0",
         "construx-copier": "^1.0.0",
         "construx-less": "^1.0.0",
         "eslint": "^1.10.3",
         "express": "^4.12.2",
         "kraken-js": "^2.0.0",
+        "moment": "^2.22.2",
         "mysql": "^2.15.0",
         "react": "^16.4.1",
         "react-bootstrap": "^0.32.1",
+        "react-datepicker": "^1.6.0",
         "react-dom": "^16.4.1",
         "react-router-dom": "^4.3.1"
     },
